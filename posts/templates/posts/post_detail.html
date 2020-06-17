@@ -1,0 +1,53 @@
+{% extends "posts/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <h4 class="text-info mr-2">
+        {{ post.author.first_name }} {{ post.author.last_name }}
+        <small class="mr-auto text-muted">{{ post.posted_on }}</small>
+        {% if object.author == user %}
+          <a class="btn btn-danger btn-sm mt-1 mr-1 ml-1 mb-1 float-right" href="{% url 'posts-delete' object.id %}">Delete</a>
+          <a class="btn btn-info btn-sm mt-1 mr-1 ml-1 mb-1 float-right" href="{% url 'posts-update' object.id %}">Update</a>
+        {% endif %}
+      </h4>
+      <h6 class="text-secondary mr-auto">{{ post.author_description }}</h6>      
+    </div>
+    <h3>
+      <a class="article-title text-gray" href="#">{{ post.title }}</a>
+    </h3>
+    <p class="article-content">
+      {% if post.image %}
+        <img class="mx-auto d-block" src="{{ post.image.url }}">
+      {% endif %}
+      {{ post.content|safe }}
+    </p>
+    <div class="comment-section">
+      <h4 class="comment-title" >Comments</h4>
+      <a class="btn btn-default mb-2" href="{% url 'add-comment' post.id %}">Add Comment</a>
+      {% if post.comments.count > 0 %}
+        {% for comment in post.comments.all %}
+          <div class="comment">
+            <strong>
+              {{ comment.full_name }}
+              <small class="text-muted ml-2">{{ comment.commented_date }}</small>
+              {% if user.is_staff %}
+                <form action="{% url 'delete-comment' comment.id %}" method="POST" style="display: inline;">
+                  {% csrf_token %}
+                  <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-default btn-sm">
+                      <span class="glyphicon glyphicon-trash">Delete</span>
+                  </button>
+                </form>
+              {% endif %}
+            </strong>
+            <p>{{ comment.content|linebreaks }}</p>
+          {% empty %} 
+            <p>No Comments</p>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</article>
+{% endblock %}

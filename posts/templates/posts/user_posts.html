@@ -1,0 +1,28 @@
+{% extends "posts/base.html" %}
+{% block content %}
+{% for post in post_s %}
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <h4 class="text-info mr-2">
+          {{ post.author.first_name }} {{ post.author.last_name }}
+        </a>
+        <small class="mr-auto text-muted">Posted On {{ post.posted_on }}</small>
+      </h4>
+      <h5 class="text-secondary mr-auto">{{ post.author_description }}</h5>      
+    </div>
+    <h3>
+      <a class="article-title text-gray" href="{% url 'posts-detail' post.id %}">
+        {{ post.title }}
+      </a>
+    </h3>
+    <p class="article-content">
+      {% if post.image %}
+        <img class="mx-auto d-block" src="{{ post.image.url }}">
+      {% endif %}
+      {{ post.content|safe }}
+    </p>
+  </div>
+</article>
+{% endfor %}
+{% endblock %}

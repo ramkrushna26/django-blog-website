@@ -1,0 +1,8 @@
+iSite/__pycache__/
+posts/__pycache__/
+posts/migrations/__pycache__/
+users/__pycache__/
+users/migrations/__pycache__/
+media/posts/*
+media/default.png
+posts/templatetags/__pycache__/

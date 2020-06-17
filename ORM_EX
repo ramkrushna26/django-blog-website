@@ -1,0 +1,40 @@
+(django_project)$ py3 manage.py shell
+Python 3.8.2 (default, Apr 27 2020, 15:53:34) 
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from blog.models import Post
+>>> from django.contrib.auth.models import User
+>>> User.objects.all()
+<QuerySet [<User: admin>, <User: testuser>]>
+>>> User.objects.first()
+<User: admin>
+>>> User.objects.filter(username='admin')
+<QuerySet [<User: admin>]>
+>>> User.objects.filter(username='admin').first()
+<User: admin>
+>>> user = User.objects.filter(username='admin').first()
+>>> user
+<User: admin>
+>>> user.id, user.pk
+(1, 1)
+>>> Post.objects.all()
+<QuerySet []>
+>>> post_1 = Post(title='Blog1', content='first post content!', author=user)
+>>> Post.objects.all()
+<QuerySet []>
+>>> post_1.save()
+>>> Post.objects.all()
+<QuerySet [<Post: Post object (1)>]>
+>>> 
+>>> post = Post.objects.first()
+>>> post.content
+'first post content!'
+>>> post.date_posted
+datetime.datetime(2020, 5, 31, 10, 1, 37, 371932, tzinfo=<UTC>)
+>>> user.post_set.all()
+<QuerySet [<Post: Blog1>, <Post: Blog 2>]>
+>>> user.post_set.create(title='Blog 3', content='third post content')
+<Post: Blog 3>
+>>> Post.objects.all()
+<QuerySet [<Post: Blog1>, <Post: Blog 2>, <Post: Blog 3>]>

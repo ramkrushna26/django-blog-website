@@ -1,0 +1,29 @@
+to see django-admin subcommand
+$ django-admin
+
+to create project
+$ django-admin startproject <project_name>
+
+to start server
+$ python3 manage.py runserver
+
+to create app
+$ python3 manage.py startapp blog
+
+to apply changes to db, need to do migration and apply to those migrations
+$ python3 manage.py makemigrations
+$ python3 manage.py migrate
+
+to create user user
+$ python3 manage.py createsuperuser
+
+to see sql running for migration
+$ python3 manage.py sqlmigrate <app_name> <migration_initial>
+
+to access db from ORM
+$ python3 manage.py shell
+
+
+https://dev.to/coderasha/how-to-migrate-data-from-sqlite-to-postgresql-in-django-182h -- for migrating from sql-lite to postgresql
+
+for future improve : https://djangocentral.com/creating-comments-system-with-django/
