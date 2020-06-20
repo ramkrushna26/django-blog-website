@@ -8,7 +8,7 @@
         <a href="{% url 'posts-user' post.author.username %}">
           {{ post.author.first_name }} {{ post.author.last_name }}
         </a>
-        <small class="mr-auto text-muted">Posted On {{ post.posted_on }}</small>
+        <small class="mr-auto text-muted">Posted on: {{ post.posted_on|date:'M d, Y' }}</small>
       </h4>
       <h5 class="text-secondary mr-auto">{{ post.author_description }}</h5>      
     </div>

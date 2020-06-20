@@ -117,15 +117,6 @@ a.article-title:hover {
   width: 300px;
 }
 
-.footer {
-  position: fixed;
-  color: #ffffff;
-  width: 100%;
-  bottom: 0px;
-  height: 2rem;
-  padding-top: 5px;  
-}
-
 
 .comment-section {
   margin-top: 5px;
