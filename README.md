@@ -11,7 +11,8 @@
 
 3. Make the DB changes
 > python3 manage.py makemigration
->> python3 manage.py migrate
+
+> python3 manage.py migrate
 
 4. runserver
 > python3 manage.py runserver
