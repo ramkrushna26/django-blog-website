@@ -1,7 +1,9 @@
-## Django Blog Post Website ##
+## Django Blog Post Website
 
+## Reference
+https://www.geeksforgeeks.org/django-tutorial/?ref=shm
 
-#### Follow below steps to run this application ####
+### Follow below steps to run this application
 
 1. Clone this repository
 > git clone https://github.com/ramkrushna26/iSite.git
